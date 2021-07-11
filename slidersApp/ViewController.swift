@@ -27,7 +27,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        sliderRed.minimumTrackTintColor = .red
+        sliderGreen.minimumTrackTintColor = .green
+        sliderBlue.minimumTrackTintColor = .blue
+    
     }
     
     func changeRgbColor() {
