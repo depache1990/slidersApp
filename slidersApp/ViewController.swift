@@ -8,12 +8,7 @@
 import UIKit
 class ViewController: UIViewController {
     // mainLabel
-    @IBOutlet weak var mainLabel: UIView!
-    
-    // LabelsColors
-    @IBOutlet weak var redLabel: UILabel!
-    @IBOutlet weak var greenLabel: UILabel!
-    @IBOutlet weak var blueLabel: UILabel!
+    @IBOutlet weak var colorView: UIView!
     
     // LabelsNumberValue
     @IBOutlet weak var redValueLabel: UILabel!
@@ -27,31 +22,36 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        colorView.layer.cornerRadius = 15
+        
         sliderRed.minimumTrackTintColor = .red
         sliderGreen.minimumTrackTintColor = .green
-        sliderBlue.minimumTrackTintColor = .blue
-    
+        
+        colorView.backgroundColor = UIColor(
+            red: CGFloat(sliderRed.value),
+            green: CGFloat(sliderGreen.value),
+            blue: CGFloat(sliderBlue.value),
+            alpha: 1
+        )
+        redValueLabel.text = String(format: "%.2f", sliderRed.value)
+        greenValueLabel.text = String(format: "%.2f", sliderGreen.value)
+        blueValueLabel.text = String(format: "%.2f", sliderBlue.value)
     }
     
-    func changeRgbColor() {
-        mainLabel.backgroundColor = UIColor(red: CGFloat(sliderRed.value), green: CGFloat(sliderGreen.value), blue: CGFloat(sliderBlue.value), alpha: 1)
+    @IBAction func rgbSlider(_ sender: UISlider) {
+        setColor()
+        redValueLabel.text = String(format: "%.2f", sliderRed.value)
+        greenValueLabel.text = String(format: "%.2f", sliderGreen.value)
+        blueValueLabel.text = String(format: "%.2f", sliderBlue.value)
+        
     }
-    
-    @IBAction func sliderActionRed() {
-        changeRgbColor()
-        redValueLabel.text = String(sliderRed.value)
+    private func setColor() {
+        colorView.backgroundColor = UIColor(
+            red: CGFloat(sliderRed.value),
+            green: CGFloat(sliderGreen.value),
+            blue: CGFloat(sliderBlue.value),
+            alpha: 1
+        )
     }
-    
-    @IBAction func sliderActionGreen() {
-        changeRgbColor()
-        greenValueLabel.text = String(sliderGreen.value)
-    }
-    
-    @IBAction func sliderActionBlue() {
-        changeRgbColor()
-        blueValueLabel.text = String(sliderBlue.value)
-    }
-    
-    
 }
 
