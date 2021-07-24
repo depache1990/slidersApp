@@ -6,7 +6,10 @@
 //
 
 import UIKit
-class ViewController: UIViewController {
+
+
+class SettingsViewController: UIViewController {
+    
     // mainLabel
     @IBOutlet weak var colorView: UIView!
     
@@ -37,14 +40,16 @@ class ViewController: UIViewController {
         greenValueLabel.text = String(format: "%.2f", sliderGreen.value)
         blueValueLabel.text = String(format: "%.2f", sliderBlue.value)
     }
+  
     
     @IBAction func rgbSlider(_ sender: UISlider) {
         setColor()
         redValueLabel.text = String(format: "%.2f", sliderRed.value)
         greenValueLabel.text = String(format: "%.2f", sliderGreen.value)
-        blueValueLabel.text = String(format: "%.2f", sliderBlue.value)
-        
+        blueValueLabel.text = String(format: "%.2f", sliderBlue.value
+        )
     }
+  
     private func setColor() {
         colorView.backgroundColor = UIColor(
             red: CGFloat(sliderRed.value),
@@ -53,5 +58,8 @@ class ViewController: UIViewController {
             alpha: 1
         )
     }
+    @IBAction func backOut(_ sender: Any) {
+        dismiss(animated: true)
+    }
 }
-
+    
