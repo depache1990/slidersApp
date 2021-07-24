@@ -23,19 +23,22 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var sliderGreen: UISlider!
     @IBOutlet weak var sliderBlue: UISlider!
     
+    var viewColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         colorView.layer.cornerRadius = 15
+        colorView.backgroundColor = viewColor
         
         sliderRed.minimumTrackTintColor = .red
         sliderGreen.minimumTrackTintColor = .green
         
-        colorView.backgroundColor = UIColor(
-            red: CGFloat(sliderRed.value),
-            green: CGFloat(sliderGreen.value),
-            blue: CGFloat(sliderBlue.value),
-            alpha: 1
-        )
+//        colorView.backgroundColor = UIColor(
+//            red: CGFloat(sliderRed.value),
+//            green: CGFloat(sliderGreen.value),
+//            blue: CGFloat(sliderBlue.value),
+//            alpha: 1
+       // )
         redValueLabel.text = String(format: "%.2f", sliderRed.value)
         greenValueLabel.text = String(format: "%.2f", sliderGreen.value)
         blueValueLabel.text = String(format: "%.2f", sliderBlue.value)
