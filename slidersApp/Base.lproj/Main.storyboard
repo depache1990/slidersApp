@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Cs2-zj-lE9"/>
-                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" id="qnn-pC-Ctg">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.pencil" catalog="system" id="8po-KK-Mg1">
@@ -25,6 +25,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="colorBackgroundOU" destination="NgA-cF-l26" id="e1L-aK-chZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uvA-La-TEG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -156,8 +159,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="backOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZrD-ig-a2r"/>
-                                    <segue destination="RsO-gt-8F8" kind="unwind" identifier="back" unwindAction="myUnwindWithUnwindSegue:" id="QZE-5V-b6d"/>
+                                    <action selector="safeButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="MLu-7N-27P"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -178,16 +180,18 @@
                     </view>
                     <connections>
                         <outlet property="blueValueLabel" destination="a2J-sZ-z7g" id="8UN-wS-Ure"/>
+                        <outlet property="blueValueTF" destination="0eQ-wm-h81" id="KRx-gJ-wt7"/>
                         <outlet property="colorView" destination="ElB-DY-kLx" id="KS1-zk-AFT"/>
                         <outlet property="greenValueLabel" destination="INs-oy-FPb" id="0Ba-vc-Ac4"/>
+                        <outlet property="greenValueTF" destination="VAi-xO-LTA" id="Uns-Uv-YOj"/>
                         <outlet property="redValueLabel" destination="sYe-Zw-amt" id="mxA-fl-29B"/>
+                        <outlet property="redValueTF" destination="Sc8-J8-hSb" id="0Dz-jo-wqc"/>
                         <outlet property="sliderBlue" destination="vIb-7U-BwI" id="he5-gg-KR1"/>
                         <outlet property="sliderGreen" destination="OBQ-8E-x5t" id="cC9-AQ-yLI"/>
                         <outlet property="sliderRed" destination="xeV-hE-XVa" id="V1d-8R-kDG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="RsO-gt-8F8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2076" y="-0.44977511244377816"/>
         </scene>
@@ -215,9 +219,6 @@
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

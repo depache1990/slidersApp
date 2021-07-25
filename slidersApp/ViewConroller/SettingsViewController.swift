@@ -23,8 +23,13 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var sliderGreen: UISlider!
     @IBOutlet weak var sliderBlue: UISlider!
     
-    var viewColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+    @IBOutlet weak var redValueTF: UITextField!
+    @IBOutlet weak var greenValueTF: UITextField!
+    @IBOutlet weak var blueValueTF: UITextField!
     
+    var delegate: SettingsViewControllerDelegate!
+    
+    var viewColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
     override func viewDidLoad() {
         super.viewDidLoad()
         colorView.layer.cornerRadius = 15
@@ -33,15 +38,21 @@ class SettingsViewController: UIViewController {
         sliderRed.minimumTrackTintColor = .red
         sliderGreen.minimumTrackTintColor = .green
         
-//        colorView.backgroundColor = UIColor(
-//            red: CGFloat(sliderRed.value),
-//            green: CGFloat(sliderGreen.value),
-//            blue: CGFloat(sliderBlue.value),
-//            alpha: 1
-       // )
         redValueLabel.text = String(format: "%.2f", sliderRed.value)
         greenValueLabel.text = String(format: "%.2f", sliderGreen.value)
         blueValueLabel.text = String(format: "%.2f", sliderBlue.value)
+        
+        redValueTF.delegate = self
+        greenValueTF.delegate = self
+        blueValueTF.delegate = self
+    }
+    private func setColor() {
+        colorView.backgroundColor = UIColor(
+            red: CGFloat(sliderRed.value),
+            green: CGFloat(sliderGreen.value),
+            blue: CGFloat(sliderBlue.value),
+            alpha: 1
+        )
     }
   
     
@@ -52,17 +63,15 @@ class SettingsViewController: UIViewController {
         blueValueLabel.text = String(format: "%.2f", sliderBlue.value
         )
     }
-  
-    private func setColor() {
-        colorView.backgroundColor = UIColor(
-            red: CGFloat(sliderRed.value),
-            green: CGFloat(sliderGreen.value),
-            blue: CGFloat(sliderBlue.value),
-            alpha: 1
-        )
+    
+    @IBAction func safeButton() {
+        delegate.setNewColor(for: colorView.backgroundColor ?? .white)
+            dismiss(animated: true)
     }
-    @IBAction func backOut(_ sender: Any) {
-        dismiss(animated: true)
+    }
+extension SettingsViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
     }
 }
     
