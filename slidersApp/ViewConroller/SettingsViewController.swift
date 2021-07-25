@@ -10,19 +10,20 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
-    // mainLabel
+    // mainView
     @IBOutlet weak var colorView: UIView!
     
-    // LabelsNumberValue
+    // Labels
     @IBOutlet weak var redValueLabel: UILabel!
     @IBOutlet weak var greenValueLabel: UILabel!
     @IBOutlet weak var blueValueLabel: UILabel!
     
-    // Sliders
+    // Slider
     @IBOutlet weak var sliderRed: UISlider!
     @IBOutlet weak var sliderGreen: UISlider!
     @IBOutlet weak var sliderBlue: UISlider!
     
+    // TextField
     @IBOutlet weak var redValueTF: UITextField!
     @IBOutlet weak var greenValueTF: UITextField!
     @IBOutlet weak var blueValueTF: UITextField!
@@ -45,6 +46,7 @@ class SettingsViewController: UIViewController {
         redValueTF.delegate = self
         greenValueTF.delegate = self
         blueValueTF.delegate = self
+        
     }
     private func setColor() {
         colorView.backgroundColor = UIColor(
@@ -54,24 +56,38 @@ class SettingsViewController: UIViewController {
             alpha: 1
         )
     }
-  
     
     @IBAction func rgbSlider(_ sender: UISlider) {
         setColor()
+        //передача значения слайдеров в лейблы
         redValueLabel.text = String(format: "%.2f", sliderRed.value)
         greenValueLabel.text = String(format: "%.2f", sliderGreen.value)
-        blueValueLabel.text = String(format: "%.2f", sliderBlue.value
-        )
+        blueValueLabel.text = String(format: "%.2f", sliderBlue.value)
+        
+        //передача значения слайдеров в TextField
+        redValueTF.text = String(format: "%.2f", sliderRed.value)
+        greenValueTF.text = String(format: "%.2f", sliderGreen.value)
+        blueValueTF.text = String(format: "%.2f", sliderBlue.value)
     }
     
     @IBAction func safeButton() {
+        view.endEditing(true)
         delegate.setNewColor(for: colorView.backgroundColor ?? .white)
-            dismiss(animated: true)
-    }
-    }
-extension SettingsViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
+        dismiss(animated: true)
     }
 }
-    
+extension SettingsViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let newValue = textField.text else { return }
+        guard let numberValue = Float(newValue) else { return }
+        if textField == redValueTF {
+            sliderRed.value = numberValue
+        } else if textField == greenValueTF {
+            sliderGreen.value = numberValue
+        } else if textField == blueValueTF {
+            sliderBlue.value = numberValue
+        }
+    }
+}
+
+
